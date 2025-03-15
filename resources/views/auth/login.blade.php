@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<head><script src="https://www.google.com/recaptcha/api.js?hl=id" async defer></script></head>
 <div class="container mt-5 pt-4"> <!-- Jarak dari navbar -->
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6"> <!-- Lebar kolom disesuaikan -->
@@ -36,6 +37,14 @@
                             @enderror
                         </div>
 
+			<!-- Recaptcha -->
+			<div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+			@error('g-recaptcha-response')
+        		<span style="color: red;">{{ $message }}</span>
+    			@enderror
+			<br>
+			<br>
+
                         <!-- Remember Me & Forgot Password -->
                         <div class="mb-4 d-flex justify-content-between align-items-center">
                             <div class="form-check">
@@ -50,7 +59,6 @@
                                 </a>
                             @endif
                         </div>
-
                         <!-- Submit Button -->
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill fw-bold">

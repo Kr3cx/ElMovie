@@ -23,7 +23,7 @@
             <div class="col-md-4 text-center text-md-end">
                 <p class="mb-0 text-muted">&copy; {{ date('Y') }} ElMovie</p>
                 <small class="text-muted d-block mt-2">Created by Kresna & Ryan</small>
-                <small class="text-muted">This website is made to fulfill the final project of Digicourse Sanbercode x Telkom.</small>
+                <small class="text-muted">This website is made to fulfill the final project of Telkom.</small>
             </div>
         </div>
     </div>
