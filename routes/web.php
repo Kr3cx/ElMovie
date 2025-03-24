@@ -11,6 +11,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Error 404
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});
+
+
 // Genre Routes (Without Middleware for now)
 Route::get('genres', [GenreController::class, 'index'])->name('genres.index');
 Route::get('genres/create', [GenreController::class, 'create'])->name('genres.create'); 
@@ -26,7 +32,7 @@ Route::middleware('auth')->group(function () {
 // Film Routes (Without Middleware for now)
 Route::get('films', [FilmController::class, 'index'])->name('films.index');
 Route::get('films/create', [FilmController::class, 'create'])->name('films.create'); 
-Route::get('films/{film}', [FilmController::class, 'show'])->name('films.show');
+Route::get('/films/{film:slug}', [FilmController::class, 'show'])->name('films.show');
 
 Route::middleware('auth')->group(function () {
     Route::post('films', [FilmController::class, 'store'])->name('films.store');
@@ -46,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
+
 
 // Auth Routes
 Auth::routes();

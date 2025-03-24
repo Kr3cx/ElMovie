@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FilmController extends Controller
 {
@@ -79,7 +80,7 @@ class FilmController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([	
             'judul' => 'required|string|max:255',
             'tahun' => 'required|integer|min:1900|max:' . date('Y'),
             'ringkasan' => 'nullable|string',
@@ -87,10 +88,14 @@ class FilmController extends Controller
             'tipe' => 'required|in:movie,series',
             'jumlah_episode' => 'nullable|integer|min:1',
             'durasi' => 'nullable|integer|min:1',
-            'link' => 'nullable|url'
+            'link' => 'nullable|url',
+	    'genre_id' => 'required|exists:genres,id',
+
         ]);
 
-        Film::create($request->all());
+	$validatedData['slug'] = Str::slug($validatedData['judul'], '-');	
+
+	Film::create($validatedData);
 
         return redirect()->route('films.index')->with('success', 'Film berhasil ditambahkan');
     }

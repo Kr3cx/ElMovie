@@ -1,5 +1,5 @@
 <!-- resources/views/components/film-card.blade.php -->
-<div class="col-6 col-md-4 col-lg-3 animate__animated animate__fadeIn"">
+<div class="col-6 col-md-4 col-lg-3 animate__animated animate__fadeIn">
     <div class="card h-100 border-0 shadow-sm film-card overflow-hidden">
         <div class="position-relative">
             <img src="{{ $film->poster }}" 
@@ -47,6 +47,6 @@
             </div>
         </div>
         
-        <a href="{{ route('films.show', $film->id) }}" class="stretched-link" aria-label="Lihat detail {{ $film->judul }}"></a>
+        <a href="{{ route('films.show', $film->slug) }}" class="stretched-link" aria-label="Lihat detail {{ $film->judul }}"></a>
     </div>
 </div>

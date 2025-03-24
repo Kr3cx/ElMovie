@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('genre_id')->constrained()->onDelete('cascade');
             $table->string('judul');
+            $table->string('slug')->unique(); // Tambahkan slug
             $table->text('ringkasan');
             $table->year('tahun');
             $table->string('poster'); 

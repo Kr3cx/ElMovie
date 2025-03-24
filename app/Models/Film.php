@@ -10,7 +10,7 @@ class Film extends Model
     // use HasFactory;
 
     protected $fillable = [
-        'genre_id', 'judul', 'ringkasan', 'tahun', 'poster',
+        'genre_id', 'judul', 'slug', 'ringkasan', 'tahun', 'poster',
         'tipe', 'jumlah_episode', 'durasi', 'link'
     ];
 
@@ -24,3 +24,4 @@ class Film extends Model
         return $this->hasMany(Ulasan::class);
     }
 }
+
